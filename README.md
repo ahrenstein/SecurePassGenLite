@@ -50,6 +50,5 @@ remembering the few passwords I used daily, so it's not too bad.
 
 Why are you open sourcing this?
 ==================
-I felt that this tool was super handy both during and after my time at DoE. I adapted it to my next employer
-and now I want to release a version that anyone can use, and that I can use without having to adapt it
-each time. Also this is a great way to learn git and GitHub :P
+I felt that this tool was super handy both during and after my time at DoE. I adapted it for my next employer
+and now I want to release a version that anyone can use . Also this is a great way to learn git and GitHub :P
