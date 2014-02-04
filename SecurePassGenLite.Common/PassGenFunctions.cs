@@ -1,5 +1,5 @@
 ﻿// ----------------------------------------------------------------------
-// <copyright file="PassGenFunctionsL.cs" company="Ahrenstein">
+// <copyright file="PassGenFunctions.cs" company="Ahrenstein">
 //     Copyright (c) 2014 Ahrenstein., All Rights Reserved.
 //     Authors:
 //          Matthew Ahrenstein 2014 @ahrenstein
@@ -19,10 +19,12 @@ using System.Text;
 
 namespace SecurePassGenLite.Common
 {
-    public class PassGenFunctionsL
+    /// <summary>
+    /// Implements public accessor functions for generating passwords.
+    /// </summary>
+    public class PassGenFunctions
     {
-        # region PasswordFunctions
-
+        #region PasswordFunctions
         /// <summary>
         /// Generates the password using some built in values
         /// </summary>
@@ -31,13 +33,15 @@ namespace SecurePassGenLite.Common
         /// <returns>Returns a password to be used for protecting client systems</returns>
         public string GeneratePassword(string seed, string fqdn)
         {
-            string generatedPassword = ""; //The generated password to be returned
-            int errorCheck = 0; //Sets up for error checking
+            string generatedPassword = ""; // the generated password to be returned
+            int errorCheck = 0; // sets up for error checking
+
             if (seed == "")
             {
                 generatedPassword = "ERROR! Seed field cannot be NULL!";
                 errorCheck++;
             }
+
             if (fqdn == "")
             {
                 generatedPassword = "ERROR! FQDN field cannot be NULL!";
@@ -45,8 +49,8 @@ namespace SecurePassGenLite.Common
             }
             if (errorCheck == 0)
             {
-                int passwordLength = 9; //Sets the password length to be used for all passwords
-                PassGenCoreL command = new PassGenCoreL();
+                int passwordLength = 9; // sets the password length to be used for all passwords
+                PassGenCore command = new PassGenCore();
                 generatedPassword = command.GenPass(seed, fqdn, passwordLength);
             }
             else if (errorCheck == 2)
@@ -55,6 +59,6 @@ namespace SecurePassGenLite.Common
             }
             return generatedPassword;
         }
-        # endregion
-    }
-}
+        #endregion
+    } // public class PassGenFunctions
+} // namespace SecurePassGenLite.Common
