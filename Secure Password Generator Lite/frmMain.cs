@@ -12,6 +12,11 @@
  * 
  * $created guid: 4282c961-89d1-46ef-8acc-3c4b16ac83fc 2014/1/31$
  */
+/**
+ * Copyright (c) 2014 Nevec Networks LLC., All Rights Reserved.
+ * INTERNAL/PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
+ * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
+ */
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -30,6 +35,11 @@ namespace SecurePassword.GeneratorLite
     public partial class frmMain : Form
     {
         /**
+         * Fields
+         */
+        private bool passwordLengthValueFail = false;
+
+        /**
          * Methods
          */
         /// <summary>
@@ -38,6 +48,61 @@ namespace SecurePassword.GeneratorLite
         public frmMain()
         {
             InitializeComponent();
+
+            this.txtFQDN.KeyPress += txtFQDN_KeyPress;
+            this.txtSeed.KeyPress += txtSeed_KeyPress;
+            this.txtPasswordLength.KeyPress += txtPasswordLength_KeyPress;
+            this.btnGenPass.Enabled = false;
+        }
+
+        /// <summary>
+        /// Event that occurs when typing in the seed text box.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        void txtSeed_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (txtSeed.Text != string.Empty && txtFQDN.Text != string.Empty && !passwordLengthValueFail)
+                btnGenPass.Enabled = true;
+        }
+
+        /// <summary>
+        /// Event that occurs when typing in the FQDN text box.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        void txtFQDN_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (txtSeed.Text != string.Empty && txtFQDN.Text != string.Empty && !passwordLengthValueFail)
+                btnGenPass.Enabled = true;
+        }
+
+        /// <summary>
+        /// Event that occurs when typing in the password length text box.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        void txtPasswordLength_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // if the input value is not a digit throw message
+            if (!char.IsDigit(e.KeyChar))
+            {
+                MessageBox.Show("Password length must be a numerical value!", AssemblyVersion._NAME, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                
+                btnGenPass.Enabled = false;
+                txtPasswordLength.BackColor = Color.LightSalmon;
+                passwordLengthValueFail = true;
+            }
+
+            // if the input value is a digit enable the generate button and reset background color
+            if (char.IsDigit(e.KeyChar))
+            {
+                if (txtSeed.Text != string.Empty && txtFQDN.Text != string.Empty)
+                    btnGenPass.Enabled = true;
+
+                txtPasswordLength.BackColor = Color.White;
+                passwordLengthValueFail = false;
+            }
         }
 
         /// <summary>
@@ -57,8 +122,8 @@ namespace SecurePassword.GeneratorLite
         /// <param name="e"></param>
         private void btnGenPass_Click(object sender, EventArgs e)
         {
-            PassGenFunctions genpass = new PassGenFunctions();
-            txtPassword.Text = genpass.GeneratePassword(txtSeed.Text, txtFQDN.Text);
+            int passwordLength = Convert.ToInt32(txtPasswordLength.Text);
+            txtPassword.Text = PassGenFunctions.GeneratePassword(txtSeed.Text, txtFQDN.Text, passwordLength);
         }
 
         /// <summary>
@@ -71,6 +136,11 @@ namespace SecurePassword.GeneratorLite
             txtFQDN.Clear();
             txtSeed.Clear();
             txtPassword.Clear();
+
+            txtPasswordLength.Text = "5";
+            txtPasswordLength.BackColor = Color.White;
+
+            btnGenPass.Enabled = false;
         }
 
         /// <summary>
