@@ -20,12 +20,21 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using System.Reflection; //Used for grabbing Assembly info to make a nice About Box
+using System.Reflection; // used for grabbing Assembly info to make a nice About Box
 
-namespace Secure_Password_Generator_Lite
+namespace SecurePassword.GeneratorLite
 {
+    /// <summary>
+    /// Implements the logic code for the about box.
+    /// </summary>
     public partial class frmAbout : Form
     {
+        /**
+         * Methods
+         */
+        /// <summary>
+        /// Initializes a new instance of the <see cref="frmAbout"/> class.
+        /// </summary>
         public frmAbout()
         {
             string[] projectDescription = new string[]
@@ -37,103 +46,29 @@ namespace Secure_Password_Generator_Lite
                 "",
                 "\t\t*** Secure Password Generator Lite Credits ***",
                 "Matthew Ahrenstein:",
-                "-Common Library (Contains Password Generating Formulas and Functions)",
-                "-User Interface",
+                "\t- Common Library (Contains Password Generating Formulas and Functions)",
+                "\t- User Interface",
                 "",
                 "Nevec Networks LLC:",
-                "-Assembly Attribute Accessors (Used to grab build/version info automatically)"
+                "\t- Assembly Attribute Accessors (Used to grab build/version info automatically)",
+                "\t- Minor Code Cleanup"
             };
 
             InitializeComponent();
-            this.lblProjectName.Text = "Project Name: " + AssemblyProduct;
-            this.lblVersion.Text = "Build Version: " + AssemblyVersion;
-            this.lblCopyright.Text = "Copyright: " + AssemblyCopyright;
-            this.lblCompanyName.Text = "Company Name: " + AssemblyCompany;
+            this.lblProjectName.Text = AssemblyVersion._NAME;
+            this.lblVersion.Text = "Version: " + AssemblyVersion._VERSION_STRING;
+            this.lblCopyright.Text = AssemblyVersion._COPYRIGHT;
             this.txtDescription.Lines = projectDescription;
         }
 
+        /// <summary>
+        /// Event that occurs when the "Close" button is clicked.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnClose_Click(object sender, EventArgs e)
         {
             Close();
         }
-        #region Assembly Attribute Accessors
-
-        public string AssemblyTitle
-        {
-            get
-            {
-                object[] attributes = Assembly.GetExecutingAssembly().GetCustomAttributes(typeof(AssemblyTitleAttribute), false);
-                if (attributes.Length > 0)
-                {
-                    AssemblyTitleAttribute titleAttribute = (AssemblyTitleAttribute)attributes[0];
-                    if (titleAttribute.Title != "")
-                    {
-                        return titleAttribute.Title;
-                    }
-                }
-                return System.IO.Path.GetFileNameWithoutExtension(Assembly.GetExecutingAssembly().CodeBase);
-            }
-        }
-
-        public string AssemblyVersion
-        {
-            get
-            {
-                return Assembly.GetExecutingAssembly().GetName().Version.ToString();
-            }
-        }
-
-        public string AssemblyDescription
-        {
-            get
-            {
-                object[] attributes = Assembly.GetExecutingAssembly().GetCustomAttributes(typeof(AssemblyDescriptionAttribute), false);
-                if (attributes.Length == 0)
-                {
-                    return "";
-                }
-                return ((AssemblyDescriptionAttribute)attributes[0]).Description;
-            }
-        }
-
-        public string AssemblyProduct
-        {
-            get
-            {
-                object[] attributes = Assembly.GetExecutingAssembly().GetCustomAttributes(typeof(AssemblyProductAttribute), false);
-                if (attributes.Length == 0)
-                {
-                    return "";
-                }
-                return ((AssemblyProductAttribute)attributes[0]).Product;
-            }
-        }
-
-        public string AssemblyCopyright
-        {
-            get
-            {
-                object[] attributes = Assembly.GetExecutingAssembly().GetCustomAttributes(typeof(AssemblyCopyrightAttribute), false);
-                if (attributes.Length == 0)
-                {
-                    return "";
-                }
-                return ((AssemblyCopyrightAttribute)attributes[0]).Copyright;
-            }
-        }
-
-        public string AssemblyCompany
-        {
-            get
-            {
-                object[] attributes = Assembly.GetExecutingAssembly().GetCustomAttributes(typeof(AssemblyCompanyAttribute), false);
-                if (attributes.Length == 0)
-                {
-                    return "";
-                }
-                return ((AssemblyCompanyAttribute)attributes[0]).Company;
-            }
-        }
-        #endregion
-    }
-}
+    } // public partial class frmAbout : Form
+} // namespace SecurePassword.GeneratorLite

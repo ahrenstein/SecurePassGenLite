@@ -40,8 +40,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="PassGenFunctionsL.cs" />
-    <Compile Include="PassGenCoreL.cs" />
+    <Compile Include="PassGenFunctions.cs" />
+    <Compile Include="PassGenCore.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

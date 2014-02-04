@@ -17,9 +17,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 
-namespace Secure_Password_Generator_Lite
+namespace SecurePassword.GeneratorLite
 {
-    static class Program
+    /// <summary>
+    /// Program entry point.
+    /// </summary>
+    public static class Program
     {
         /// <summary>
         /// The main entry point for the application.
@@ -31,5 +34,5 @@ namespace Secure_Password_Generator_Lite
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new frmMain());
         }
-    }
-}
+    } // public static class Program
+} // namespace SecurePassword.GeneratorLite

@@ -22,26 +22,50 @@ using System.Text;
 using System.Windows.Forms;
 using SecurePassGenLite.Common;
 
-namespace Secure_Password_Generator_Lite
+namespace SecurePassword.GeneratorLite
 {
+    /// <summary>
+    /// Implements the logic for the main application form.
+    /// </summary>
     public partial class frmMain : Form
     {
+        /**
+         * Methods
+         */
+        /// <summary>
+        /// Initializes a new instance of the <see cref="frmMain"/> class.
+        /// </summary>
         public frmMain()
         {
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Event that occurs when the "Quit" button is clicked.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnQuit_Click(object sender, EventArgs e)
         {
             Close();
         }
 
+        /// <summary>
+        /// Event that occurs when the "Generate Password" button is clicked.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnGenPass_Click(object sender, EventArgs e)
         {
-            PassGenFunctionsL genpass = new PassGenFunctionsL();
+            PassGenFunctions genpass = new PassGenFunctions();
             txtPassword.Text = genpass.GeneratePassword(txtSeed.Text, txtFQDN.Text);
         }
 
+        /// <summary>
+        /// Event that occurs when the "Clear" button is clicked.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnClear_Click(object sender, EventArgs e)
         {
             txtFQDN.Clear();
@@ -49,10 +73,15 @@ namespace Secure_Password_Generator_Lite
             txtPassword.Clear();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        /// <summary>
+        /// Event that occurs when the "About" button is clicked.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnAbout_Click(object sender, EventArgs e)
         {
             frmAbout aboutBox = new frmAbout();
             aboutBox.ShowDialog();
         }
-    }
-}
+    } // public partial class frmMain : Form
+} // namespace SecurePassword.GeneratorLite

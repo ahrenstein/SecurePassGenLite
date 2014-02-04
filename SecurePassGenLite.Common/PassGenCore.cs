@@ -1,5 +1,5 @@
 ﻿// ----------------------------------------------------------------------
-// <copyright file="PassGenCoreL.cs" company="Ahrenstein">
+// <copyright file="PassGenCore.cs" company="Ahrenstein">
 //     Copyright (c) 2014 Ahrenstein., All Rights Reserved.
 //     Authors:
 //          Matthew Ahrenstein 2014 @ahrenstein
@@ -19,7 +19,10 @@ using System.Text;
 
 namespace SecurePassGenLite.Common
 {
-    class PassGenCoreL
+    /// <summary>
+    /// Implements core password generation logic.
+    /// </summary>
+    internal class PassGenCore
     {
         #region CorePasswordFunctions
         /// <summary>
@@ -31,46 +34,57 @@ namespace SecurePassGenLite.Common
         /// <returns>Returns a compliant password</returns>
         public string GenPass(string sSeed, string sFQDN, int iMaxLength)
         {
-            string newseed = sSeed + sFQDN; //Creating an easier to use seed by combining Seed and FQDN
+            string newseed = sSeed + sFQDN; // creating an easier to use seed by combining Seed and FQDN
             int iSeed = 0;
-            foreach (char ch in newseed.ToCharArray()) //Generating an integer seed value by adding the ASCII values of the seed characters
-            {
+            
+            // generate an integer seed value by adding the ASCII values of the seed characters
+            foreach (char ch in newseed.ToCharArray()) 
                 iSeed += ch;
-            }
+
             Random rnd = new Random(iSeed);
             string sPassword = "";
-            string sCharactersNotAllowed = ","; //These characters should be skipped when generating passwords
+            string sCharactersNotAllowed = ","; // these characters should be skipped when generating passwords
             bool hasUpperCase, hasLowerCase, hasNumber, hasSymbol;
-            hasUpperCase = hasLowerCase = hasSymbol = hasNumber = false; //Sets initial BOOL values to determine if a character requirement has been met yet
-            while (sPassword.Length != iMaxLength) //This loop generates characters using ASCII values 33 through 126 (valid password characters in most cases)
+            
+            // sets initial bool values to determine if a character requirement has been met yet
+            hasUpperCase = hasLowerCase = hasSymbol = hasNumber = false; 
+            
+            // generate characters using ASCII values 33 through 126 (valid password characters in most cases)
+            while (sPassword.Length != iMaxLength) 
             {
                 char ch = (char)rnd.Next(33, 126);
-                if (sCharactersNotAllowed.IndexOf(ch) != -1) //Blocks the use of excluded characters
+                // blocks the use of excluded characters
+                if (sCharactersNotAllowed.IndexOf(ch) != -1) 
                     continue;
-                if (Char.IsUpper(ch) && !hasUpperCase) //Determines if we have used at least 1 upper case letter yet
+
+                // determines if we have used at least 1 upper case letter yet
+                if (Char.IsUpper(ch) && !hasUpperCase) 
                 {
                     sPassword += ch;
                     hasUpperCase = true;
                 }
-                else if (Char.IsLower(ch) && !hasLowerCase) //Determines if we have used at least 1 lower case letter yet
+                else if (Char.IsLower(ch) && !hasLowerCase) // determines if we have used at least 1 lower case letter yet
                 {
                     sPassword += ch;
                     hasLowerCase = true;
                 }
-                else if (sPassword.Length != 0 && sPassword.Length != iMaxLength - 1) //Prevents the password from starting or ending in a number or symbol
+                else if (sPassword.Length != 0 && sPassword.Length != iMaxLength - 1) // prevents the password from starting or ending in a number or symbol
                 {
-                    if (char.IsNumber(ch) && !hasNumber) //Determines if we have used at least 1 number yet
+                    // determines if we have used at least 1 number yet
+                    if (char.IsNumber(ch) && !hasNumber)
                     {
                         sPassword += ch;
                         hasNumber = true;
                     }
-                    else if (Char.IsSymbol(ch) && !hasSymbol) //Determines if we have used at least 1 symbol yet
+                    else if (Char.IsSymbol(ch) && !hasSymbol) // determines if we have used at least 1 symbol yet
                     {
                         sPassword += ch;
                         hasSymbol = true;
                     }
                 }
-                if (sPassword.Length == iMaxLength - 1) //Forces the password to start, and end in a letter of any case
+
+                // forces the password to start, and end in a letter of any case
+                if (sPassword.Length == iMaxLength - 1) 
                 {
                     hasUpperCase = hasLowerCase = false;
                 }
@@ -79,7 +93,6 @@ namespace SecurePassGenLite.Common
             }
             return sPassword;
         }
-
         #endregion
-    }
-}
+    } // internal class PassGenCore
+} // namespace SecurePassGenLite.Common
