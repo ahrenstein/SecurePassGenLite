@@ -12,6 +12,11 @@
  * 
  * $created guid: e25663f7-dd73-4162-a765-de189de1f961 2014/1/31$
  */
+/**
+ * Copyright (c) 2014 Nevec Networks LLC., All Rights Reserved.
+ * INTERNAL/PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
+ * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
+ */
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,33 +36,19 @@ namespace SecurePassGenLite.Common
         /// <param name="seed">Seed value agreed upon by client</param>
         /// <param name="fqdn">Fully Qualified Domain Name of system to generate password for</param>
         /// <returns>Returns a password to be used for protecting client systems</returns>
-        public string GeneratePassword(string seed, string fqdn)
+        public static string GeneratePassword(string seed, string fqdn, int passwordLength)
         {
-            string generatedPassword = ""; // the generated password to be returned
-            int errorCheck = 0; // sets up for error checking
+            if (seed == string.Empty)
+                return "ERROR! Seed field cannot be empty!";
 
-            if (seed == "")
-            {
-                generatedPassword = "ERROR! Seed field cannot be NULL!";
-                errorCheck++;
-            }
+            if (fqdn == string.Empty)
+                return "ERROR! FQDN field cannot be empty!";
 
-            if (fqdn == "")
-            {
-                generatedPassword = "ERROR! FQDN field cannot be NULL!";
-                errorCheck++;
-            }
-            if (errorCheck == 0)
-            {
-                int passwordLength = 9; // sets the password length to be used for all passwords
-                PassGenCore command = new PassGenCore();
-                generatedPassword = command.GenPass(seed, fqdn, passwordLength);
-            }
-            else if (errorCheck == 2)
-            {
-                generatedPassword = "ERROR! Seed & FQDN fields cannot be NULL!";
-            }
-            return generatedPassword;
+            if (passwordLength <= 5)
+                passwordLength = 5; // default the password length to 9 if we get a value less then 5
+
+            PassGenCore command = new PassGenCore();
+            return command.GenPass(seed, fqdn, passwordLength);
         }
         #endregion
     } // public class PassGenFunctions

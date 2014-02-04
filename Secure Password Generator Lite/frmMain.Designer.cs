@@ -38,6 +38,8 @@
             this.btnClear = new System.Windows.Forms.Button();
             this.btnAbout = new System.Windows.Forms.Button();
             this.btnQuit = new System.Windows.Forms.Button();
+            this.lblPassLength = new System.Windows.Forms.Label();
+            this.txtPasswordLength = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // lblFQDN
@@ -70,7 +72,7 @@
             this.txtSeed.Location = new System.Drawing.Point(113, 54);
             this.txtSeed.Name = "txtSeed";
             this.txtSeed.PasswordChar = '*';
-            this.txtSeed.Size = new System.Drawing.Size(409, 20);
+            this.txtSeed.Size = new System.Drawing.Size(247, 20);
             this.txtSeed.TabIndex = 2;
             // 
             // btnGenPass
@@ -129,11 +131,31 @@
             this.btnQuit.UseVisualStyleBackColor = true;
             this.btnQuit.Click += new System.EventHandler(this.btnQuit_Click);
             // 
+            // lblPassLength
+            // 
+            this.lblPassLength.AutoSize = true;
+            this.lblPassLength.Location = new System.Drawing.Point(363, 57);
+            this.lblPassLength.Name = "lblPassLength";
+            this.lblPassLength.Size = new System.Drawing.Size(105, 15);
+            this.lblPassLength.TabIndex = 8;
+            this.lblPassLength.Text = "Password Length:";
+            // 
+            // txtPasswordLength
+            // 
+            this.txtPasswordLength.Location = new System.Drawing.Point(466, 55);
+            this.txtPasswordLength.Name = "txtPasswordLength";
+            this.txtPasswordLength.Size = new System.Drawing.Size(56, 20);
+            this.txtPasswordLength.TabIndex = 9;
+            this.txtPasswordLength.Text = "5";
+            this.txtPasswordLength.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(534, 171);
+            this.Controls.Add(this.txtPasswordLength);
+            this.Controls.Add(this.lblPassLength);
             this.Controls.Add(this.btnQuit);
             this.Controls.Add(this.btnAbout);
             this.Controls.Add(this.btnClear);
@@ -167,6 +189,8 @@
         private System.Windows.Forms.Button btnClear;
         private System.Windows.Forms.Button btnAbout;
         private System.Windows.Forms.Button btnQuit;
+        private System.Windows.Forms.Label lblPassLength;
+        private System.Windows.Forms.TextBox txtPasswordLength;
     }
 }
 

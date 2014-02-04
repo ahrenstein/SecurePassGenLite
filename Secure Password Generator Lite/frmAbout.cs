@@ -51,7 +51,8 @@ namespace SecurePassword.GeneratorLite
                 "",
                 "Nevec Networks LLC:",
                 "\t- Assembly Attribute Accessors (Used to grab build/version info automatically)",
-                "\t- Minor Code Cleanup"
+                "\t- Minor Code Cleanup",
+                "\t- Added password length variability",
             };
 
             InitializeComponent();
