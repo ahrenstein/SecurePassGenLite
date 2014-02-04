@@ -146,7 +146,7 @@
             this.txtPasswordLength.Name = "txtPasswordLength";
             this.txtPasswordLength.Size = new System.Drawing.Size(56, 20);
             this.txtPasswordLength.TabIndex = 9;
-            this.txtPasswordLength.Text = "5";
+            this.txtPasswordLength.Text = "8";
             this.txtPasswordLength.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // frmMain

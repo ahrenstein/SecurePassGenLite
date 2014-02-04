@@ -44,8 +44,8 @@ namespace SecurePassGenLite.Common
             if (fqdn == string.Empty)
                 return "ERROR! FQDN field cannot be empty!";
 
-            if (passwordLength <= 5)
-                passwordLength = 5; // default the password length to 9 if we get a value less then 5
+            if (passwordLength <= 8)
+                passwordLength = 8; // default the password length to 8 if we get a value less then 8
 
             PassGenCore command = new PassGenCore();
             return command.GenPass(seed, fqdn, passwordLength);

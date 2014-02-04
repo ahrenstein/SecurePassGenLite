@@ -137,7 +137,7 @@ namespace SecurePassword.GeneratorLite
             txtSeed.Clear();
             txtPassword.Clear();
 
-            txtPasswordLength.Text = "5";
+            txtPasswordLength.Text = "8";
             txtPasswordLength.BackColor = Color.White;
 
             btnGenPass.Enabled = false;
