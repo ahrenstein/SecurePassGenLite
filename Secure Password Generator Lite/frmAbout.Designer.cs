@@ -40,7 +40,7 @@
             this.lblProjectName.AutoSize = true;
             this.lblProjectName.Location = new System.Drawing.Point(12, 10);
             this.lblProjectName.Name = "lblProjectName";
-            this.lblProjectName.Size = new System.Drawing.Size(116, 15);
+            this.lblProjectName.Size = new System.Drawing.Size(99, 13);
             this.lblProjectName.TabIndex = 0;
             this.lblProjectName.Text = "projectName_Label";
             // 
@@ -49,7 +49,7 @@
             this.lblVersion.AutoSize = true;
             this.lblVersion.Location = new System.Drawing.Point(12, 30);
             this.lblVersion.Name = "lblVersion";
-            this.lblVersion.Size = new System.Drawing.Size(84, 15);
+            this.lblVersion.Size = new System.Drawing.Size(73, 13);
             this.lblVersion.TabIndex = 1;
             this.lblVersion.Text = "version_Label";
             // 
@@ -58,7 +58,7 @@
             this.lblCopyright.AutoSize = true;
             this.lblCopyright.Location = new System.Drawing.Point(12, 50);
             this.lblCopyright.Name = "lblCopyright";
-            this.lblCopyright.Size = new System.Drawing.Size(94, 15);
+            this.lblCopyright.Size = new System.Drawing.Size(82, 13);
             this.lblCopyright.TabIndex = 2;
             this.lblCopyright.Text = "copyright_Label";
             // 
@@ -68,7 +68,7 @@
             this.txtDescription.Multiline = true;
             this.txtDescription.Name = "txtDescription";
             this.txtDescription.ReadOnly = true;
-            this.txtDescription.Size = new System.Drawing.Size(384, 248);
+            this.txtDescription.Size = new System.Drawing.Size(407, 248);
             this.txtDescription.TabIndex = 1;
             this.txtDescription.TabStop = false;
             this.txtDescription.Text = "Description";
@@ -87,16 +87,16 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(414, 356);
+            this.ClientSize = new System.Drawing.Size(434, 360);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.txtDescription);
             this.Controls.Add(this.lblCopyright);
             this.Controls.Add(this.lblVersion);
             this.Controls.Add(this.lblProjectName);
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(430, 398);
+            this.MaximumSize = new System.Drawing.Size(450, 398);
             this.MinimizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(430, 398);
+            this.MinimumSize = new System.Drawing.Size(450, 398);
             this.Name = "frmAbout";
             this.Text = "About Secure Password Generator Lite";
             this.ResumeLayout(false);
