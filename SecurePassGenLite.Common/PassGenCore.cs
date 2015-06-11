@@ -12,6 +12,11 @@
  * 
  * $created guid: f9445c4d-cf70-4f02-a529-50f7bfde2143 2014/1/31$
  */
+ /**
+ * Copyright (c) 2014 Nevec Networks LLC., All Rights Reserved.
+ * INTERNAL/PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
+ * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
+ */
 using System;
 using System.Collections.Generic;
 using System.Linq;
