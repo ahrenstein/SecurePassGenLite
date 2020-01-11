@@ -1,9 +1,8 @@
 Secure Password Generator Lite
-=================
-
+==============================
 
 The Story
-==================
+---------
 The story behind this tool is rather simple. I used to work for A DoE contractor as a Systems Administrator.
 I had to maintain thousands of linux nodes (via SSH keys) but I still needed root passwords for local conole
 access. The law (not policy but an actual law) required that each server have it's own unique password that matched
@@ -12,7 +11,7 @@ such as spreadsheets, or notepad files, I opted to create a tool. It takes two s
 formula to convert them into the same password each time. This way you can reliably recover any password.
 
 Using The Tool
-==================
+--------------
 The first string is the fully qualified domain name (FQDN) of the server. (ie: mysql0017.server.doe.gov)
 The second string is a unique phrase (Seed Text) that you must keep secret. This string should always be the same.
 The Seed Text string is the phrase that when combined with the FQDN produces a DoE compliant password.
@@ -20,14 +19,25 @@ It's the same password every time, so whoever knows the Seed String, can gain ro
 In 180 days just change the Seed Text, and update the password on all of the servers.
 
 Why is it called "Lite"?
-==================
-This version of the tool is missing some features. The DoE one (which I eventually adapted an employer in the private
-sector as well) had AD authentication built into it as well as a check-in with a server to make sure it was on site
-on a DoE computer. (Server was not exposed to the web) The "Full version" also used a slightly different algorithm and contained
-a third variable. I had to differentiate the two versions enough knowing one day I'd want to open source this.
+------------------------
+This version of the tool is missing some features. The DoE one had AD authentication built into it as well as a check-in
+with a server to make sure it was on site on a DoE computer. (Server was not exposed to the web) The "Full version" also
+used a slightly different algorithm and contained a third variable. I had to differentiate the two versions enough knowing
+one day I'd want to open source this.
+
+Is this secure?
+---------------
+
+The short answer?  
+![no](readme-no.png)
+
+The long answer?  
+This type of password generation is completely frowned upon by anyone who knows what they're doing. This repo existed
+for a very specific purpose to fulfill a requirement that no longer exists because it was terrible.
+**USE [1PASSWORD](https://1password.com/)**
 
 What is a DoE compliant password?
-==================
+---------------------------------
 A DoE compliant password has a bunch of requirements:
 1) Password contains at least eight non-blank characters, provided such passwords are allowed by the operating system or application.
 2) Password contains a combination of letters (a mixture of upper and lowercase), numbers, and at least one special character within the
@@ -49,6 +59,7 @@ Yup that's a lot of requirements. DoE is in charge of nuclear research though, a
 remembering the few passwords I used daily, so it's not too bad.
 
 Why are you open sourcing this?
-==================
-I felt that this tool was super handy both during and after my time at DoE. I adapted it for my next employer
-and now I want to release a version that anyone can use . Also this is a great way to learn git and GitHub :P
+-------------------------------
+This tool was part of my early years as a junior engineer and while the security behind it is absolutely terrible, I
+don't like throwing away code. Some day someone can look at this and use it as a lesson in why certain things are no
+longer done certain ways.
